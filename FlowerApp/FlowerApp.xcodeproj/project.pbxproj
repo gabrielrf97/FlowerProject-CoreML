@@ -12,6 +12,7 @@
 		C0E8036B2326ED3A008FC639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8036A2326ED3A008FC639 /* Assets.xcassets */; };
 		C0E8036E2326ED3A008FC639 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0E8036C2326ED3A008FC639 /* LaunchScreen.storyboard */; };
 		C0E803762326EE27008FC639 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0E803752326EE27008FC639 /* Main.storyboard */; };
+		C0E803792326EE6E008FC639 /* Flower.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E803782326EE6E008FC639 /* Flower.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		C0E8036D2326ED3A008FC639 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0E8036F2326ED3A008FC639 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0E803752326EE27008FC639 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C0E803782326EE6E008FC639 /* Flower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flower.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,47 @@
 		C0E803622326ED35008FC639 /* FlowerApp */ = {
 			isa = PBXGroup;
 			children = (
-				C0E803632326ED35008FC639 /* AppDelegate.swift */,
-				C0E803652326ED35008FC639 /* ViewController.swift */,
-				C0E8036A2326ED3A008FC639 /* Assets.xcassets */,
-				C0E8036C2326ED3A008FC639 /* LaunchScreen.storyboard */,
-				C0E8036F2326ED3A008FC639 /* Info.plist */,
-				C0E803752326EE27008FC639 /* Main.storyboard */,
+				C0E8037A2326EE9B008FC639 /* Application */,
+				C0E803772326EE5D008FC639 /* Model */,
+				C0E8037B2326EEC1008FC639 /* Controller */,
+				C0E8037D2326EEE2008FC639 /* View */,
 			);
 			path = FlowerApp;
+			sourceTree = "<group>";
+		};
+		C0E803772326EE5D008FC639 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C0E803782326EE6E008FC639 /* Flower.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C0E8037A2326EE9B008FC639 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				C0E8036A2326ED3A008FC639 /* Assets.xcassets */,
+				C0E803632326ED35008FC639 /* AppDelegate.swift */,
+				C0E8036F2326ED3A008FC639 /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		C0E8037B2326EEC1008FC639 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C0E803652326ED35008FC639 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C0E8037D2326EEE2008FC639 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C0E803752326EE27008FC639 /* Main.storyboard */,
+				C0E8036C2326ED3A008FC639 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +172,7 @@
 			files = (
 				C0E803662326ED35008FC639 /* ViewController.swift in Sources */,
 				C0E803642326ED35008FC639 /* AppDelegate.swift in Sources */,
+				C0E803792326EE6E008FC639 /* Flower.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
