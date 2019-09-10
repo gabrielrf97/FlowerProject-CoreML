@@ -8,26 +8,44 @@
 
 import UIKit
 import Vision
+import Alamofire
+import SVProgressHUD
+import SwiftyJSON
+import SDWebImage
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var flowerImageView: UIImageView!
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var latinNameLabel: UILabel!
     @IBOutlet weak var flowerDescription: UITextView!
     
+    var imageHolder : UIImage?
     var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureImagePicker()
         configurePictureImageView()
-        self.present(imagePicker, animated: true, completion: nil)
+        self.navigationController?.isNavigationBarHidden = true
+        showImagePicker()
     }
     
     @IBAction func newPressed(_ sender: Any) {
-        self.present(imagePicker, animated: true, completion: nil)
+        showImagePicker()
+    }
+    
+    func showImagePicker() {
+        self.navigationController?.present(imagePicker, animated: true, completion: { [unowned self] in
+            self.configureViewForNewData()
+        })
+    }
+    
+    func configureViewForNewData() {
+        nameLabel.text = ""
+        flowerDescription.text = ""
+        pictureImageView.image = nil
+        flowerImageView.image = nil
     }
     
     func configureImagePicker() {
@@ -38,7 +56,7 @@ class ViewController: UIViewController {
     }
     
     func configurePictureImageView() {
-        pictureImageView.layer.cornerRadius = pictureImageView.frame.height / 2
+        pictureImageView.layer.cornerRadius = pictureImageView.frame.width/2
         pictureImageView.layer.masksToBounds = true
     }
     
@@ -56,8 +74,8 @@ class ViewController: UIViewController {
             guard let firstResult = request.results?.first as? VNClassificationObservation else {
                 fatalError("Unable to get classifications from image")
             }
-            self.fetchData(firstResult, completion: {  (_image, _flower) in
-                self.updateUI(_flower, with: _image)
+            self.fetchData(firstResult, completion: {  (_flower) in
+                self.updateUI(_flower)
             })
         })
         
@@ -70,14 +88,47 @@ class ViewController: UIViewController {
         }
     }
     
-    func fetchData(_ classification: VNClassificationObservation, completion: (CIImage, Flower) -> ()) {
+    func fetchData(_ classification: VNClassificationObservation, completion: @escaping (Flower) -> ()) {
+        SVProgressHUD.show()
         
+        let wikipediaURL = "https://en.wikipedia.org/w/api.php"
+        let params : [String: String] = [
+            "format" : "json",
+            "action" : "query",
+            "prop" : "info|extracts|pageimages",
+            "exintro" : "",
+            "explaintext" : "",
+            "titles" : classification.identifier,
+            "indexpageids" : "",
+            "redirects" : "1",
+            "pithumbsize": "500",
+        ]
+        
+        Alamofire.request(wikipediaURL, method: .get, parameters: params).validate().response { response in
+            SVProgressHUD.dismiss()
+            
+            guard let responseData = try? response.data! else {
+                return
+            }
+            guard let flowerJSON = try? JSON(data: responseData) else {
+                return
+            }
+            print(flowerJSON)
+            let pageId = flowerJSON["query"]["pageids"][0].stringValue
+            let flowerTitle = flowerJSON["query"]["pages"][pageId]["title"].stringValue
+            let extract = flowerJSON["query"]["pages"][pageId]["extract"].stringValue
+            let imageUrl = flowerJSON["query"]["pages"][pageId]["thumbnail"]["source"].stringValue
+            
+            let flower = Flower(name: flowerTitle, description: extract, latinName: "LatinName", pictureUrl: imageUrl)
+            completion(flower)
+        }
     }
     
-    func updateUI(_ flower: Flower, with image: CIImage) {
+    func updateUI(_ flower: Flower) {
         self.nameLabel.text = flower.name
-        self.pictureImageView.image = UIImage(ciImage: image)
-        //        self.flo
+        self.flowerDescription.text = flower.description
+        self.pictureImageView.image = imageHolder
+        self.flowerImageView.sd_setImage(with: URL(string: flower.pictureUrl!), completed: nil)
     }
 }
 
@@ -89,7 +140,9 @@ extension ViewController: UIImagePickerControllerDelegate, UINavigationControlle
         guard let ciImage = CIImage(image: selectedImage) else {
             fatalError("Unable to get CIimage from UIImage ")
         }
+        self.imageHolder = selectedImage
         self.analyseData(ciImage)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

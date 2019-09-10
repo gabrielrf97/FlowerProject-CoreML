@@ -8,9 +8,16 @@
 
 import Foundation
 
-class Flower: Decodable {
+class Flower {
     var name: String?
     var description: String?
     var latinName: String?
     var pictureUrl: String?
+    
+    init(name: String, description: String, latinName: String, pictureUrl: String) {
+        self.name = name
+        self.description = description
+        self.latinName = latinName
+        self.pictureUrl = pictureUrl
+    }
 }
