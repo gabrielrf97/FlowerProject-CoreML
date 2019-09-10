@@ -10,11 +10,11 @@
 		0765DDDA16A886383F391DC0 /* Pods_FlowerApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3BFFB67EE25556E2D325355 /* Pods_FlowerApp.framework */; };
 		C0E803642326ED35008FC639 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E803632326ED35008FC639 /* AppDelegate.swift */; };
 		C0E803662326ED35008FC639 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E803652326ED35008FC639 /* ViewController.swift */; };
-		C0E8036B2326ED3A008FC639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8036A2326ED3A008FC639 /* Assets.xcassets */; };
 		C0E8036E2326ED3A008FC639 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0E8036C2326ED3A008FC639 /* LaunchScreen.storyboard */; };
 		C0E803762326EE27008FC639 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0E803752326EE27008FC639 /* Main.storyboard */; };
 		C0E803792326EE6E008FC639 /* Flower.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0E803782326EE6E008FC639 /* Flower.swift */; };
 		C0E8037F2326F305008FC639 /* FlowerClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C0E8037E2326F305008FC639 /* FlowerClassifier.mlmodel */; };
+		C0E8038523273B87008FC639 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0E8038323273B80008FC639 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,12 +23,12 @@
 		C0E803602326ED35008FC639 /* FlowerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlowerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0E803632326ED35008FC639 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0E803652326ED35008FC639 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C0E8036A2326ED3A008FC639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C0E8036D2326ED3A008FC639 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C0E8036F2326ED3A008FC639 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Application/Info.plist; sourceTree = "<group>"; };
 		C0E803752326EE27008FC639 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C0E803782326EE6E008FC639 /* Flower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flower.swift; sourceTree = "<group>"; };
 		C0E8037E2326F305008FC639 /* FlowerClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FlowerClassifier.mlmodel; sourceTree = "<group>"; };
+		C0E8038323273B80008FC639 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3BFFB67EE25556E2D325355 /* Pods_FlowerApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlowerApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -103,8 +103,8 @@
 		C0E8037A2326EE9B008FC639 /* Application */ = {
 			isa = PBXGroup;
 			children = (
-				C0E8036A2326ED3A008FC639 /* Assets.xcassets */,
 				C0E803632326ED35008FC639 /* AppDelegate.swift */,
+				C0E8038323273B80008FC639 /* Assets.xcassets */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -187,8 +187,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0E803762326EE27008FC639 /* Main.storyboard in Resources */,
+				C0E8038523273B87008FC639 /* Assets.xcassets in Resources */,
 				C0E8036E2326ED3A008FC639 /* LaunchScreen.storyboard in Resources */,
-				C0E8036B2326ED3A008FC639 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

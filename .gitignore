@@ -1,3 +1,3 @@
-FlowerApp/FlowerApp/Model/FlowerClassifier.mlmodel
-FlowerApp/Pods/
-FlowerApp/Podfile.lock
+*FlowerClassifier.mlmodel
+*/Pods/
+*/Podfile.lock

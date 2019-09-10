@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var pictureImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var flowerDescription: UITextView!
+    @IBOutlet weak var newButton: UIButton!
     
     var imageHolder : UIImage?
     var imagePicker = UIImagePickerController()
@@ -27,12 +28,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureImagePicker()
         configurePictureImageView()
+        configureNewButton()
         self.navigationController?.isNavigationBarHidden = true
         showImagePicker()
     }
     
     @IBAction func newPressed(_ sender: Any) {
         showImagePicker()
+    }
+    
+    func configureNewButton() {
+        self.newButton.backgroundColor = UIColor.gray.withAlphaComponent(0.30)
+        self.newButton.layer.cornerRadius = 6
+        self.newButton.layer.masksToBounds = true
     }
     
     func showImagePicker() {
@@ -58,6 +66,8 @@ class ViewController: UIViewController {
     func configurePictureImageView() {
         pictureImageView.layer.cornerRadius = pictureImageView.frame.width/2
         pictureImageView.layer.masksToBounds = true
+        pictureImageView.layer.borderColor = UIColor(red: 155, green: 89, blue: 182, alpha: 1.0).cgColor
+        pictureImageView.layer.borderWidth = 3
     }
     
     /**
@@ -119,13 +129,13 @@ class ViewController: UIViewController {
             let extract = flowerJSON["query"]["pages"][pageId]["extract"].stringValue
             let imageUrl = flowerJSON["query"]["pages"][pageId]["thumbnail"]["source"].stringValue
             
-            let flower = Flower(name: flowerTitle, description: extract, latinName: "LatinName", pictureUrl: imageUrl)
+            let flower = Flower(name: flowerTitle, description: extract, latinName: "LatinName", pictureUrl: imageUrl, percentage: "\((classification.confidence * 100).rounded())%")
             completion(flower)
         }
     }
     
     func updateUI(_ flower: Flower) {
-        self.nameLabel.text = flower.name
+        self.nameLabel.text = "\(flower.name!) - \(flower.percentage!)"
         self.flowerDescription.text = flower.description
         self.pictureImageView.image = imageHolder
         self.flowerImageView.sd_setImage(with: URL(string: flower.pictureUrl!), completed: nil)
